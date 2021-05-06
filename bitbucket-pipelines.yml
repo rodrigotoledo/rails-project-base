@@ -1,0 +1,43 @@
+image: ruby:2.7
+
+pipelines:
+  default:
+    - step:
+        name: Review with test
+        caches:
+          - bundler
+          - yarn
+        script:
+          - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/booking_me
+          - apt-get update && apt-get install -y nodejs apt-transport-https
+          - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+          - apt-get update
+          - apt-get install -y xvfb yarn qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+          - yarn install
+          - cp config/database.yml.pipeline config/database.yml
+          - bundle install
+          - RAILS_ENV=test bundle exec rails db:setup
+          - RAILS_ENV=test bundle exec rails db:test:prepare
+          - RAILS_ENV=test bundle exec rspec
+        services:
+          - database
+          - redis
+definitions:
+  services:
+    database:
+      image: postgres:9.5
+      environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: password
+        POSTGRES_PASSWORD: test_user_password
+    redis:
+      image: redis:6.0.10
+      command: redis-server
+      environment:
+        REDIS_URL: redis://redis:6379/0
+      ports:
+        - "6379:6379"
+  caches:
+    bundler: ./
+    yarn: ./node_modules
