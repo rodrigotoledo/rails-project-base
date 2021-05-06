@@ -8,7 +8,7 @@ pipelines:
           - bundler
           - yarn
         script:
-          - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/booking_me
+          - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/pipelines
           - apt-get update && apt-get install -y nodejs apt-transport-https
           - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
           - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -28,8 +28,8 @@ definitions:
     database:
       image: postgres:9.5
       environment:
-        POSTGRES_DB: postgres
-        POSTGRES_USER: password
+        POSTGRES_DB: pipelines
+        POSTGRES_USER: test_user
         POSTGRES_PASSWORD: test_user_password
     redis:
       image: redis:6.0.10
