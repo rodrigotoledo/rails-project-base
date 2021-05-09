@@ -22,6 +22,12 @@ This project use `guard` and `rspec` as monitor and test engine of application, 
 
 The coverage of your tests will be in the `coverage` directory
 
+## Your code need to stay good and clean
+
+With simplecov in `rspec` we have coverage of code, but must important is keep the code with good practices. Rubocop garantee this, just run
+
+- `docker-compose run app rubocop . -A`
+
 # Execute something
 
 As explained, the application run with `docker-compose` so execute the command and obtain results:
