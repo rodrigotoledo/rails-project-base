@@ -54,3 +54,12 @@ code, commit and the feature
 
 - `git commit -am 'name-of-feature fixed with short text'`
 - `git-flow feature finish name-of-feature`
+
+# Production
+
+This project use the master branch to deploy in the production server. Actually it's using the heroku. Follow the commands to deploy in production environment
+
+- `git checkout master`
+- `git pull origin master`
+- `git push origin heroku`
+- `heroku run rake db:migrate`
