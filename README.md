@@ -10,7 +10,9 @@ First of all you must have install `Docker` and have `docker-compose` as fuction
 
 - `docker-compose build`
   ...will build the application using Docker
-- `docker-compose run app bundle exec rails new . --database=postgresql`
+- `docker-compose run app bundle exec rails new . -T --database=postgresql`
+  of course packages too
+- `docker-compose run app yarn`
   ...will create the applicationn with current folder name
 - `docker-compose run app bundle exec rails db:drop db:create db:migrate`
   and finally create, migrate tables

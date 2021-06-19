@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: booking_me_development
+  database: project_name_development
 
 test:
   <<: *default
-  database: booking_me_test
+  database: project_name_test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
