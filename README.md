@@ -11,7 +11,7 @@ First of all you must have install `Docker` and have `docker-compose` as fuction
 - `docker-compose build`
   ...will build the application using Docker
 - `docker-compose run app bundle exec rails new . -T --database=postgresql`
-  lock plataform
+  lock plataform (I run this for my macbook m1)
 - `docker-compose run app bundle lock --add-platform x86_64-linux`
 - `docker-compose run app bundle`
   rspec for tests
@@ -51,9 +51,13 @@ if you want interact in console run
 
 # Development
 
-This project uses git flow workflow so each developer should follow the steps to build or fix something
+This project uses git flow workflow so each developer should follow the steps to build or fix something.
 
-To start new feature
+Inside your project run
+
+- `git-flow init`
+
+To start feature
 
 - `git-flow feature start name-of-feature`
 

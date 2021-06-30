@@ -9,6 +9,10 @@ services:
       - "3000"
     ports:
       - 3000:3000
+    environment:
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: project_name
     depends_on:
       - db
       - redis
@@ -16,8 +20,6 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: password
   redis:
     image: redis:6.0.10
     command: redis-server
